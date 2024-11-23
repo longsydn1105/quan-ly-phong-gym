@@ -1,0 +1,169 @@
+@charset "UTF-8";
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+  }
+  body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #2D2D2D;
+ }
+  
+  header {
+  	background-color: #2D2D2D;
+  	font-size: 30px;
+  }
+  .nav-item:hover a {
+  	color: #C41E24;
+  }
+  .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+   .nav {
+   	background-color: #2D2D2D;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+  }
+
+  .nav-link {
+ 	color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+  }
+
+  .btn-register {
+    padding: 8px 16px;
+    margin-right: 50px;
+    background-color: #C41E24;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+  }
+	
+  .btn-register:hover {
+  	color: #C41E24;
+    background-color: #2D2D2D;
+  }
+  
+  /*css content */
+  
+  .content{
+  	color:white;
+  	margin-top: 100px;
+  }
+  
+  .content h1 {
+	 font-family: 'Bebas Neue', sans-serif;
+	 font-size: 40px;
+	 color: white; 
+	 text-transform: uppercase;
+	 letter-spacing: 2px;
+	 text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  }
+  
+  .col-content-right{
+  	 transform: translateY(20px); /* Lệch lên trên */
+  	 position: relative;
+  	 overflow: hidden;
+  	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng cho chữ*/
+  }
+  
+  .content-detail img {
+  	height: 400px;
+  	width: 100%;
+  	margin-bottom: 10px;
+  	border: 1px solid #fff; /* Thêm viền trắng */
+  	border-radius: 15px; /* Bo góc mềm mại */
+  	transition: transform 0.3s ease, filter 0.3s ease; /*Thời gian delay phóng to của hiệu ứng hover*/
+  	
+  }
+  
+  .content-detail img:hover {
+  	transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  	filter: brightness(1.1); /* Tăng độ sáng khi hover */
+  }
+  
+  .content
+  .content-detail p {
+  	font-size: 15px;
+	width: fit-content;
+	overflow-wrap: break-word; /* Bẻ từ nếu nội dung quá dài */
+  }
+  
+  /* CSS Địa chỉ phòng gym*/
+  .address {
+  	margin-top: 40px;
+  	color: white;
+  }
+  
+  .address h2 {
+  	font-family: 'Bebas Neue', sans-serif;
+	font-size: 40px;
+	color: white; 
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+  }
+  
+  .time-service{
+  	margin-top: 62px;
+ 	gap: 20px;
+  }
+  
+  .time-service div {
+  	border-top: 1px solid white;
+  	width: 40%;
+  	padding-top: 10px;
+  }
+  
+  .feature-list ul{
+  	list-style: none;
+  	padding: 0;
+  	margin: 0;
+  }
+  
+  .feature-list li {
+  	display: flex; /*Đặt icon và văn bản nằm ngang*/
+  	align-items: center; /*Căn giữa icon và văn bản*/
+  	margin-bottom: 2px;
+  	font-family: 'Roboto', sans-serif; /* Font hiện đại */
+  	font-size: 16px; /* Kích thước chữ */
+  	color: white; /* Màu chữ */
+  }
+  
+  .feature-list i {
+  color: white; /* Màu icon */
+  margin-right: 10px; /* Khoảng cách giữa icon và văn bản */
+  font-size: 10px; /* Kích thước icon */
+}
+
+
+	/* CSS form điền */
+  .form {
+  	padding: 0; /* Loại bỏ khoảng cách */
+  	overflow: visible; /* Cho phép tràn ra ngoài */
+  	background-color: #EDEDED; 
+  	margin-top: 40px;
+  }
+  
+  .form div {
+  	background-color: white;
+  	margin-left: -300px;
+  	margin-right: -300px;
+  }
+  
+  /* CSS Contract*/
+  
+  .contract {
+  	color: white;
+  	padding: 20px;
+  	margin-top:50px;
+  }
+  
+  .email-contract {
+  	border-right: 2px solid white;
+  	border-left: 2px solid white;
+  }
