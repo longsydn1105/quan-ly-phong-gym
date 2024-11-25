@@ -1,0 +1,118 @@
+/* Toàn bộ trang */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+	position:relative;
+	background-image: url('../img/Logo_Gym.png');
+	background-size: cover;
+	background-position: center;
+  	width: 100%;
+  	height: 100vh;
+  	filter: blur(5px); /* Làm mờ nền */
+    z-index: -1; /* Đẩy nền xuống dưới nội dung */
+}
+
+/* Thêm lớp phủ trắng nhạt */
+.background::before {
+    content: '';
+    position: absolute;
+    top: 100px; /* Khoảng cách phía trên */
+    left: 100px; /* Khoảng cách bên trái */
+    right: 100px; /* Khoảng cách bên phải */
+    bottom: 100px; /* Khoảng cách phía dưới */
+    background-color: rgba(255, 255, 255, 0.5); /* Màu trắng nhạt với độ trong suốt */
+    z-index: 1; /* Đặt lớp phủ nằm trên nền */
+    border-radius: 20px; /* Bo góc nhẹ (tuỳ chọn) */
+}
+
+/* Các phần tử bên trong cần nằm trên lớp phủ */
+header, .center-container, .userName {
+    position: relative;
+    z-index: 2; /* Nằm trên lớp phủ */
+}
+/* Định dạng header và nút "Đăng xuất" */
+header {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+header button {
+    background-color: #333; /* Nền đen */
+    color: white; /* Chữ trắng */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+header button:hover {
+    background-color: #555; /* Đổi màu khi hover */
+}
+
+/*Định dạng tên user*/
+.userName {
+    background-color: rgba(85, 85, 85, 0.9); /* Nền xám đậm trong suốt */
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #fff; /* Chữ trắng */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 20px; /* Tạo khoảng cách đều giữa chữ và viền */
+    border-radius: 8px; /* Bo góc mềm mại */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Đổ bóng để tạo chiều sâu */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền mỏng màu trắng nhạt */
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà khi thay đổi */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Tạo bóng cho chữ */
+}
+
+.userName:hover {
+    background-color: rgba(70, 70, 70, 0.95); /* Đổi nền khi hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Tăng chiều sâu khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+    border-color: rgba(255, 255, 255, 0.4); /* Viền sáng hơn khi hover */
+}
+
+.userName h2 {
+	color: white;
+}
+
+/* Định dạng container căn giữa */
+.center-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row; /* Xếp nút theo hàng ngang */
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa các nút */
+}
+
+/* Định dạng các nút */
+.center-container .btn {
+    background-color: black; /* Nền đen */
+    color: white; /* Chữ trắng */
+    width: 250px; /* Chiều rộng cố định */
+    height: 70px; /* Chiều cao cố định */
+    font-size: 20px; /* Chữ to hơn */
+    text-align: center;
+    border: none;
+    border-radius: 10px; /* Bo góc chuyên nghiệp */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.center-container .btn:hover {
+    transform: scale(1.1); /* Phóng to khi hover */
+    background-color: #444; /* Đổi màu nền khi hover */
+}

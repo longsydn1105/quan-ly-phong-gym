@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.form-group {
+	position: absolute;
+    top: -10px;
+    left: 16%;
+}
+
+.form-group h2{
+	font-size: 30px;
+	font-weight: 1000;
+	color: white;
+}
+.form-group label{
+	font-weight: 700; /* Đậm hơn */
+    font-size: 15px; /* Kích thước chữ chuẩn */
+    letter-spacing: 0.5px; /* Giãn khoảng cách giữa các ký tự một chút */
+    text-transform: capitalize; /* Viết hoa chữ cái đầu mỗi từ (nếu cần) */
+    color: #333; /* Màu chữ đậm hơn */
+}
+
+/*CSS input*/
+.form-input {
+	width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng của khung chứa */
+    padding: 10px; /* Tăng khoảng cách giữa nội dung và viền */
+    margin-bottom: 15px; /* Tạo khoảng cách giữa các input */
+    border: 1px solid #ccc; /* Viền màu nhẹ */
+    border-radius: 5px; /* Bo góc viền */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Hiệu ứng chìm nhẹ bên trong */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển màu mượt khi hover/focus */
+}
+
+.form-input:focus {
+	border-color: #007bff; /* Viền đổi màu khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng ánh sáng xanh khi focus */
+    outline: none; /* Loại bỏ viền mặc định của trình duyệt */
+	
+}
+
+.form-input-no-repair {
+	background-color: #f9f9f9; /* Nền xám nhẹ cho các input readonly */
+    color: #666; /* Màu chữ nhạt hơn */
+    cursor: not-allowed; /* Hiển thị con trỏ không cho chỉnh sửa */
+}

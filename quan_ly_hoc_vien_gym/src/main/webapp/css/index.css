@@ -48,6 +48,21 @@
     background-color: #2D2D2D;
   }
   
+   .btn-login {
+    padding: 8px 16px;
+    margin-right: 50px;
+    background-color: #C41E24;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+  }
+	
+  .btn-login:hover {
+  	color: #C41E24;
+    background-color: #2D2D2D;
+  }
+  
   /*css content */
   
   .content{
