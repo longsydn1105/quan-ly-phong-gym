@@ -33,7 +33,7 @@
 		        <li><a class="dropdown-item" href="#">Dịch vụ 3</a></li>
 		      </ul>
 	      </li>
-	
+		  <li class="nav-item"><a href="#" class="nav-link">Gói tập</a></li>
 	      <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
 	    </ul>
 	  </nav>
