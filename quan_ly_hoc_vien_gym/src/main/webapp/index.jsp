@@ -33,7 +33,13 @@
 		        <li><a class="dropdown-item" href="#">Dịch vụ 3</a></li>
 		      </ul>
 	      </li>
-		  <li class="nav-item"><a href="#" class="nav-link">Gói tập</a></li>
+		  <li class="nav-item dropdown">
+		      <a href="#" class="nav-link dropdown-toggle" id="servicesMenu" data-bs-toggle="dropdown">Gói dịch vụ</a>
+		      <ul class="dropdown-menu" aria-labelledby="servicesMenu">
+		        <li><a class="dropdown-item" href="#">Gói tập</a></li>
+		        <li><a class="dropdown-item" href="#">Gói hội viên</a></li>
+		      </ul>
+	      </li>
 	      <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
 	    </ul>
 	  </nav>
