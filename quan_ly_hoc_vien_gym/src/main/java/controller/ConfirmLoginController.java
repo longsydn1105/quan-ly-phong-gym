@@ -10,18 +10,18 @@ import model.bean.User;
 import model.dao.UserDAO;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
- * Servlet implementation class ConfirmRegisterController
+ * Servlet implementation class ConfirmLoginController
  */
-public class ConfirmRegisterController extends HttpServlet {
+public class ConfirmLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConfirmRegisterController() {
+    public ConfirmLoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,38 +40,25 @@ public class ConfirmRegisterController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 	    request.setCharacterEncoding("UTF-8");
 	    
-	    /**
-	    String userName = request.getParameter("username");
-	    String passWord = request.getParameter("password");
-	    String email = request.getParameter("email");
-	    String phone = request.getParameter("phone");
-	    */
-	    
-	    String fullName = "Trịnh Ngọc Hưng";
-	    String passWord = "321321";
-	    String email = "ngochung@gmail.com";
-	    String phone = "0901234567";
-	    
 	    UserDAO userDAO = new UserDAO();
 	    Hash hash = new Hash();
 	    StringBuilder sb = new StringBuilder();
-
-
-	    // Thêm giá trị băm vào StringBuilder
+	    
+	    ArrayList<User> listUser = userDAO.getItems();
+	    String phone = "0705995857";
+	    String passWord = "123123";
+	    
 	    sb.append(hash.hashPassword(passWord));
-
 	    
-	    // Chuyển đổi sang String
 	    String hashPass = sb.toString();
-	    
-	    User objUser = new User(fullName,email,hashPass,phone);
-	    boolean confirmRegister = userDAO.addUser(objUser);
-	    
-	    if(confirmRegister) {
-	    	request.getRequestDispatcher("/login.jsp").forward(request, response);
-	    	System.out.println("Đăng ký thành công");
+	    for(User objUser : listUser) {
+	    	if(phone.equals(objUser.getPhone()) && hashPass.equals(objUser.getPassword())) {
+	    		System.out.print("Đăng nhập thành công");
+	    	}else {
+	    		System.out.print("Đăng nhập thất bại");
+	    	}
 	    }
-
+	    
 	}
 
 }

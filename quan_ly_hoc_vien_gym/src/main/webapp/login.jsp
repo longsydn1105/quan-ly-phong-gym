@@ -26,7 +26,7 @@
 	<!-- Form đăng nhập -->
 	<div class="container mt-5  loginForm">
         <h2 class="text-center" >Form Đăng Nhập</h2>
-        <form id="loginForm">
+        <form action="<%=request.getContextPath()%>/xac-nhan-dang-nhap" method="POST" id="loginForm">
             <!-- Tên đăng nhập -->
             <div class="mb-3">
                 <label for="username" class="form-label">Tên đăng nhập</label>

@@ -46,7 +46,7 @@
 	<!-- Form đăng ký -->
 	<div class="container mt-5  registerForm">
         <h2 class="text-center" >Form Đăng Ký</h2>
-        <form id="registerForm">
+        <form action="<%=request.getContextPath()%>/xac-nhan-dang-ky" method="POST" id="registerForm">
             <!-- Tên đăng nhập -->
             <div class="mb-3">
                 <label for="username" class="form-label">Tên đăng nhập</label>
@@ -97,9 +97,9 @@
     const successMessage = document.getElementById('successMessage');
 
     form.addEventListener('submit', function(e) {
-    	 e.preventDefault();
+    	
         if (password.value !== confirmPassword.value) {
-           
+        	 e.preventDefault();	
             passwordError.style.display = 'block'; // Hiển thị lỗi
         } else {
             passwordError.style.display = 'none'; // Ẩn lỗi nếu mật khẩu trùng khớp
