@@ -1,0 +1,44 @@
+/* style.css */
+
+/* Reset một số thuộc tính mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+h1, h2 {
+    color: #007BFF;
+}
+
+/* Nút */
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Form */
+form {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
