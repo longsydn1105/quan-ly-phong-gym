@@ -29,8 +29,8 @@ public class UserDAO {
 	    String sql = "SELECT * FROM users "; // Truy vấn 
 
 	    try {
-	        pst = conn.prepareStatement(sql);
-	        rs = pst.executeQuery();
+	        pst = conn.prepareStatement(sql); // Thực hiện câu lệnh sql
+	        rs = pst.executeQuery(); // Lấy giá trị của sql
 
 	        while (rs.next()) {
 	        	User objUser = new User(
@@ -89,7 +89,7 @@ public class UserDAO {
 	//Lấy đối tượng theo ID 
 	public User getItemByID(int ID) {
 		User user = null;
-		String sql = "INSERT INTO users WHERE UserID = ?";
+		String sql = "SELECT * FROM users WHERE UserID = ?";
 		conn = connectDatabase.getConnectMySQL();
 		
 		try {
@@ -148,5 +148,28 @@ public class UserDAO {
 	    }
 	}
 	
-
+	//Xóa User
+	public boolean DeleteItem (int userID) {
+		String sql = "DELETE Users WHERE UserID = ?";
+		try {
+			conn = connectDatabase.getConnectMySQL();
+			pst = conn.prepareStatement(sql);
+			
+			pst.setInt(1, userID); 
+	        
+	        int rowsAffected = pst.executeUpdate(); 
+	        
+	        return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		} finally {
+	        try {
+	            if (pst != null) pst.close(); 
+	            if (conn != null) conn.close();   
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
 }

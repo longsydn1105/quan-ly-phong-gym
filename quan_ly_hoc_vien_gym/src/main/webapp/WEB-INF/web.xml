@@ -49,4 +49,14 @@
     <servlet-name>CreateClassController</servlet-name>
     <url-pattern>/CreateClassController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteUserController</display-name>
+    <servlet-name>DeleteUserController</servlet-name>
+    <servlet-class>controller.DeleteUserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUserController</servlet-name>
+    <url-pattern>/DeleteUserController</url-pattern>
+  </servlet-mapping>
 </web-app>

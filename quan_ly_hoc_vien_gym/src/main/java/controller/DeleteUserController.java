@@ -5,21 +5,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.bean.User;
 import model.dao.UserDAO;
 
 import java.io.IOException;
 
 /**
- * Servlet implementation class UpdateUserController
+ * Servlet implementation class DeleteUserController
  */
-public class UpdateUserController extends HttpServlet {
+public class DeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateUserController() {
+    public DeleteUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,18 +40,15 @@ public class UpdateUserController extends HttpServlet {
 	    UserDAO userDAO = new UserDAO();
 	    
 	    int ID = 2;
-	    String fullName = "Hưng Đẹp Trai";
-	    String email = "hungdz@gmail.com";
 	    
-	    User objUser = new User(ID, fullName, email);
-	    
-	    boolean check = userDAO.UpdateItem(objUser);
+	    boolean check = userDAO.DeleteItem(ID);
 	    
 	    if(check) {
-	    	System.out.println("Update thành công");
+	    	System.out.println("Xóa thành công");
 	    }else {
-	    	System.out.println("Update thất bại");
+	    	System.out.println("Xóa thất bại");
 	    }
+	    
 	}
 
 }
