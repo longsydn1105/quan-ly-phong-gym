@@ -12,7 +12,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-	<form action="CreateClassServlet" method="post">
+	<form action="<%=request.getContextPath()%>/tao-lich" method="post">
     <label for="roomID">Phòng:</label>
     <select name="roomID" id="roomID" required>
         <!-- Các RoomID sẽ được lấy từ Servlet hoặc cơ sở dữ liệu -->
@@ -51,7 +51,7 @@
     <br>
 
     <label for="endTime">Thời gian kết thúc:</label>
-    <select name="endTime" id="endTime" required>
+    <select name="endTime" id="endTime" disabled>
         <option value="10:00">10:00</option>
         <option value="12:00">12:00</option>
         <option value="16:00">16:00</option>
@@ -60,12 +60,75 @@
         <option value="22:00">22:00</option>
     </select>
     <br>
+	
+	<script>
+    const startTimeSelect = document.getElementById("startTime");
+    const endTimeSelect = document.getElementById("endTime");
+
+    // Hàm tính toán thời gian kết thúc dựa trên thời gian bắt đầu
+    function updateEndTime() {
+        const startTime = startTimeSelect.value;
+        const [hours, minutes] = startTime.split(":").map(Number);
+
+        // Cộng thêm 2 giờ
+        const endHours = hours + 2;
+
+        // Chuyển đổi lại thành chuỗi thời gian định dạng HH:mm
+        const endTime = (endHours < 10 ? "0" : "") + endHours + ":" + (minutes < 10 ? "0" : "") + minutes;
+
+        // Cập nhật giá trị cho endTimeSelect
+        Array.from(endTimeSelect.options).forEach(option => {
+            if (option.value === endTime) {
+                endTimeSelect.value = endTime;
+            }
+        });
+    }
+
+    // Lắng nghe sự kiện thay đổi trên ô startTime
+    startTimeSelect.addEventListener("change", updateEndTime);
+
+    // Khởi tạo giá trị ban đầu
+    updateEndTime();
+	</script>
 
     <label for="dateCreate">Ngày tạo:</label>
-    <input type="datetime-local" name="dateCreate" id="dateCreate" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm").format(new java.util.Date()) %>" readonly>
-    <br>
+	<input type="date" id="dateCreate" name="dateCreate" required>
+	<script>
+    // Lấy ngày hiện tại
+    const today = new Date();
+    
+    // Định dạng ngày thành yyyy-MM-dd
+    const formattedDate = today.toISOString().split("T")[0];
+    
+    // Đặt giá trị mặc định và ngày tối thiểu cho input
+    const dateInput = document.getElementById("dateCreate");
+    dateInput.value = formattedDate;  // Giá trị mặc định là ngày hiện tại
+    dateInput.min = formattedDate;   // Không cho phép chọn ngày trước ngày hiện tại
+	</script> 
+	<br>
 
-    <button type="submit">Tạo Lớp</button>
+    <button type="submit" class="btn btn-primary">Tạo Lớp</button>
+    <div class="error">
+    	<%
+			if(request.getAttribute("error") != null) {
+				String error = (String)request.getAttribute("error");
+				%>
+					<p style="color:red;"><%=error%> </p>
+				<%
+			}
+		%>
+    </div>
+    
+    <div class="success">
+    	<%
+			if(request.getAttribute("success") != null) {
+				String success = (String)request.getAttribute("success");
+				%>
+					<p style="color:green;"><%=success%> </p>
+				<%
+			}
+		%>
+    </div>
 </form>
 
 </body>

@@ -31,9 +31,9 @@ public class ClassesDAO {
 			pst.setInt(1, objClass.getRoomId());
 			pst.setInt(2, objClass.getPtId());
 			pst.setString(3, objClass.getClassName());
-			pst.setString(4, objClass.getClassName());
-			pst.setString(5, objClass.getClassName());
-			pst.setString(5, objClass.getDateCreate());
+			pst.setString(4, objClass.getStartTime());
+			pst.setString(5, objClass.getEndTime());
+			pst.setString(6, objClass.getDateCreate());
 			
 			int rowsAffected = pst.executeUpdate();
 			

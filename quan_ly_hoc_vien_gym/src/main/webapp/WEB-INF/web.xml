@@ -47,6 +47,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateClassController</servlet-name>
-    <url-pattern>/CreateClassController</url-pattern>
+    <url-pattern>/tao-lich</url-pattern>
   </servlet-mapping>
 </web-app>

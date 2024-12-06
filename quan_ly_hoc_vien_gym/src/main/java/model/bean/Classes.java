@@ -22,8 +22,19 @@ public class Classes {
         this.endTime = endTime;
         this.dateCreate = dateCreate;
     }
+    
 
-    // Getters và Setters
+    public Classes(int roomId, int ptId, String className, String startTime, String endTime, String dateCreate) {
+		super();
+		this.roomId = roomId;
+		this.ptId = ptId;
+		this.className = className;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.dateCreate = dateCreate;
+	}
+
+	// Getters và Setters
     public int getClassId() {
         return classId;
     }
