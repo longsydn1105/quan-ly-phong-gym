@@ -51,7 +51,7 @@
     <br>
 
     <label for="endTime">Thời gian kết thúc:</label>
-    <select name="endTime" id="endTime" disabled>
+    <select name="endTime" id="endTime" >
         <option value="10:00">10:00</option>
         <option value="12:00">12:00</option>
         <option value="16:00">16:00</option>
@@ -89,6 +89,9 @@
 
     // Khởi tạo giá trị ban đầu
     updateEndTime();
+    
+ 	// Ngăn không cho người dùng chỉnh sửa endTime
+    endTimeSelect.addEventListener("mousedown", (e) => e.preventDefault());
 	</script>
 
     <label for="dateCreate">Ngày tạo:</label>
