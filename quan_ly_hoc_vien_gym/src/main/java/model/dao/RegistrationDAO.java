@@ -57,6 +57,7 @@ public class RegistrationDAO {
 	    }
 	}
 	
+	//Kiểm tra người dùng có đăng ký trùng lịch không
 	public boolean isTimneConflict(Registration objRegis) {
 		 String sql = """
 			        SELECT COUNT(*)
@@ -96,4 +97,6 @@ public class RegistrationDAO {
 		    }
 		 return false;
 	}
+	
+	
 }
