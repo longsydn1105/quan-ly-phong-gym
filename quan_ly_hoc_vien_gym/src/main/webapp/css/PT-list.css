@@ -1,0 +1,72 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Màu nền sáng */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+.background {
+	position:fixed;
+	background-image: url('../img/Logo_Gym.png');
+	background-size: cover;
+	background-position: center;
+  	width: 100%;
+  	height: 100vh;
+  	filter: blur(5px); /* Làm mờ nền */
+    z-index: -1; /* Đẩy nền xuống dưới nội dung */
+    font-family: Arial, sans-serif;
+}
+.container {
+	position: relative;
+	z-index: 1;
+}
+h2 {
+    color: #343a40; /* Màu chữ đậm */
+    font-weight: bold;
+}
+
+table {
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: hidden; /* Làm tròn viền cho bảng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+}
+
+.table-dark {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6; /* Viền bảng */
+}
+
+button {
+    border-radius: 5px; /* Bo góc cho nút */
+    padding: 5px 10px;
+}
+
+button.btn-sm {
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-success {
+    background-color: #198754;
+    border-color: #198754;
+    padding: 10px 20px;
+    font-size: 16px;
+}
