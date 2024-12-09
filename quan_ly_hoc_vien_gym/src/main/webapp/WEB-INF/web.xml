@@ -59,4 +59,14 @@
     <servlet-name>DeleteUserController</servlet-name>
     <url-pattern>/DeleteUserController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConfirmRegistrationController</display-name>
+    <servlet-name>ConfirmRegistrationController</servlet-name>
+    <servlet-class>controller.ConfirmRegistrationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfirmRegistrationController</servlet-name>
+    <url-pattern>/xac-nhan-dang-ky-lich</url-pattern>
+  </servlet-mapping>
 </web-app>

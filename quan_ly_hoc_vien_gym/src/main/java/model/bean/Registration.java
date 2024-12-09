@@ -19,8 +19,13 @@ public class Registration {
         this.registeredAt = registeredAt;
     }
 
-    
-    public Registration(int registrationId, int userId, int classId) {
+    public Registration(int userId, int classId) {
+		super();
+		this.userId = userId;
+		this.classId = classId;
+	}
+
+	public Registration(int registrationId, int userId, int classId) {
 		super();
 		this.registrationId = registrationId;
 		this.userId = userId;

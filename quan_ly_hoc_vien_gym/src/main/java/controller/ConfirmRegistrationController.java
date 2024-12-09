@@ -1,26 +1,25 @@
 package controller;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.bean.Hash;
-import model.bean.User;
-import model.dao.UserDAO;
+import model.bean.Registration;
+import model.dao.RegistrationDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
- * Servlet implementation class ConfirmLoginController
+ * Servlet implementation class ConfirmRegistrationController
  */
-public class ConfirmLoginController extends HttpServlet {
+public class ConfirmRegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConfirmLoginController() {
+    public ConfirmRegistrationController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,23 +38,19 @@ public class ConfirmLoginController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 	    request.setCharacterEncoding("UTF-8");
 	    
-	    UserDAO userDAO = new UserDAO();
-	    Hash hash = new Hash();
-	    StringBuilder sb = new StringBuilder();
+	    int userID = 1;
+	    int classID = 4;
 	    
-	    ArrayList<User> listUser = userDAO.getItems();
-	    String phone = "0705995857";
-	    String passWord = "123123";
+	    Registration objRegis = new Registration(userID, classID);
+	    RegistrationDAO regisDAO = new RegistrationDAO();
 	    
-	    sb.append(hash.hashPassword(passWord));
 	    
-	    String hashPass = sb.toString();
-	    for(User objUser : listUser) {
-	    	if(phone.equals(objUser.getPhone()) && hashPass.equals(objUser.getPassword())) {
-	    		System.out.print("Đăng nhập thành công");
-	    	}else {
-	    		System.out.print("Đăng nhập thất bại");
-	    	}
+	    boolean check = regisDAO.addItem(objRegis);
+	    
+	    if(check ) {
+	    	System.out.println("Đăng Ký lịch tập thành công");
+	    }else {
+	    	System.out.println("Đăng ký lịch tập thất bại");
 	    }
 	    
 	}

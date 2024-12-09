@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import ConnectDatabase.ConnectDatabase;
 import model.bean.Classes;
@@ -50,4 +51,67 @@ public class ClassesDAO {
 	        }
 	    }
 	}
+	
+	//Hàm lấy ra tất cả đối tượng
+	public ArrayList<Classes> getItems() {
+		ArrayList<Classes> listItems = new ArrayList<Classes>();
+		String sql = "SELECT * FROM classes";
+		
+		try {
+			conn = connectDatabase.getConnectMySQL();
+			pst = conn.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				Classes objClass = new Classes(
+						rs.getInt("ClassID"), 
+						rs.getInt("RoomID"), 
+						rs.getInt("PTID"), 
+						rs.getString("ClassName"), 
+						rs.getString("StartTime"), 
+						rs.getString("EndTime"), 
+						rs.getString("DateCreate"));
+				
+				listItems.add(objClass);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+	        try {
+	            if (pst != null) pst.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return listItems;
+	}
+	
+	// Xoá đối tượng theo ID
+	public boolean DeleteItem (int classID) {
+		String sql = "DELETE classes WHERE ClassID = ?";
+		try {
+			conn = connectDatabase.getConnectMySQL();
+			pst = conn.prepareStatement(sql);
+			
+			pst.setInt(1, classID); 
+	        
+	        int rowsAffected = pst.executeUpdate(); 
+	        
+	        return rowsAffected > 0;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false; 
+		} finally {
+	        try {
+	            if (pst != null) pst.close(); 
+	            if (conn != null) conn.close();   
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+	
+	
 }
