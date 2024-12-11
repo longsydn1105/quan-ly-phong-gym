@@ -1,59 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Static Calendar</title>
+  <title>Đăng ký lịch tập</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/calendar.css">
-  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <div class="calendar-container">
-    <div class="calendar-header">December 2024</div>
-    <div class="calendar-grid">
-      <!-- Day Labels -->
-      <div class="day-label">Sun</div>
-      <div class="day-label">Mon</div>
-      <div class="day-label">Tue</div>
-      <div class="day-label">Wed</div>
-      <div class="day-label">Thu</div>
-      <div class="day-label">Fri</div>
-      <div class="day-label">Sat</div>
-
-      <!-- Days -->
-      <div></div><div></div><div></div><div></div><div></div><div class="day">1</div>
-      <div class="day">2</div>
-      <div class="day">3</div>
-      <div class="day">4</div>
-      <div class="day">5</div>
-      <div class="day">6</div>
-      <div class="day">7</div>
-      <div class="day">8</div>
-      <div class="day">9</div>
-      <div class="day">10</div>
-      <div class="day">11</div>
-      <div class="day">12</div>
-      <div class="day">13</div>
-      <div class="day">14</div>
-      <div class="day">15</div>
-      <div class="day">16</div>
-      <div class="day">17</div>
-      <div class="day">18</div>
-      <div class="day">19</div>
-      <div class="day">20</div>
-      <div class="day">21</div>
-      <div class="day">22</div>
-      <div class="day">23</div>
-      <div class="day">24</div>
-      <div class="day">25</div>
-      <div class="day">26</div>
-      <div class="day">27</div>
-      <div class="day">28</div>
-      <div class="day">29</div>
-      <div class="day">30</div>
-      <div class="day">31</div>
+	<div class="background"></div>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Lịch Đăng Ký</h2>
+        <div class="schedule-container">
+            <!-- Gym -->
+            <div class="activity">
+                <h4>Gym</h4>
+                <div class="classes">
+                    <div class="class-card">
+                        <h5 class="class-title">Phòng 101</h5>
+                        <p class="class-detail">PT: John Doe</p>
+                        <p class="class-detail">8:00 AM - 9:00 AM</p>
+                        <p class="class-detail">12/12/2024</p>
+                    </div>
+                    <div class="class-card">
+                        <h5 class="class-title">Phòng 102</h5>
+                        <p class="class-detail">PT: Jane Smith</p>
+                        <p class="class-detail">9:30 AM - 10:30 AM</p>
+                        <p class="class-detail">12/12/2024</p>
+                    </div>
+                    <div class="class-card">
+                        <h5 class="class-title">Phòng 103</h5>
+                        <p class="class-detail">PT: Mark Lee</p>
+                        <p class="class-detail">11:00 AM - 12:00 PM</p>
+                        <p class="class-detail">12/12/2024</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Yoga -->
+            <div class="activity">
+                <h4>Yoga</h4>
+                <div class="classes">
+                    <div class="class-card">
+                        <h5 class="class-title">Phòng 201</h5>
+                        <p class="class-detail">PT: Alice Brown</p>
+                        <p class="class-detail">7:00 AM - 8:00 AM</p>
+                        <p class="class-detail">12/12/2024</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Cardio -->
+            <div class="activity">
+                <h4>Cardio</h4>
+                <div class="classes">
+                    <div class="class-card">
+                        <h5 class="class-title">Phòng 301</h5>
+                        <p class="class-detail">PT: Robert White</p>
+                        <p class="class-detail">6:00 PM - 7:00 PM</p>
+                        <p class="class-detail">12/12/2024</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>

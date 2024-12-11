@@ -98,5 +98,29 @@ public class RegistrationDAO {
 		 return false;
 	}
 	
-	
+	// Xoá đăng ký theo ID Lớp
+	public boolean deleteRegistrationByClassID(int classID) {
+	    String sql = "DELETE FROM Registrations WHERE ClassID = ?";
+
+	    try {
+	        conn = connectDatabase.getConnectMySQL();
+
+	        pst = conn.prepareStatement(sql);
+	        pst.setInt(1, classID);
+
+	        int rowsAffected = pst.executeUpdate();
+	        return rowsAffected > 0; 
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        try {
+	            if (pst != null) pst.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 }

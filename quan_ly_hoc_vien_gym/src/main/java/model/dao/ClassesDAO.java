@@ -88,8 +88,43 @@ public class ClassesDAO {
 		return listItems;
 	}
 	
+	// Láy đối tượng theo ID
+	public Classes getClassByID(int classID) {
+		Classes objClass = null;
+		String sql = "SELECT * FROM classes WHERE ClassID = ?";
+		
+		try {
+			conn = connectDatabase.getConnectMySQL();
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, classID);
+			rs = pst.executeQuery();
+			
+			if(rs.next()) {
+				objClass = new Classes(
+						rs.getInt("ClassID"), 
+						rs.getInt("RoomID"), 
+						rs.getInt("PTID"), 
+						rs.getString("ClassName"), 
+						rs.getString("StartTime"), 
+						rs.getString("EndTime"), 
+						rs.getString("DateCreate"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+	        try {
+	            if (pst != null) pst.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+		
+		return objClass;
+	}
+	
 	// Xoá đối tượng theo ID
-	public boolean DeleteItem (int classID) {
+	public boolean DeleteClassByID (int classID) {
 		String sql = "DELETE classes WHERE ClassID = ?";
 		try {
 			conn = connectDatabase.getConnectMySQL();
@@ -113,7 +148,7 @@ public class ClassesDAO {
 	    }
 	}
 	
-		//Hàm lấy ra tất cả đối tượng
+		//Hàm lấy ra tất cả đối tượng có thời gian hiện tại và tương lai
 		public ArrayList<Classes> getItemsUpComing() {
 			ArrayList<Classes> listItems = new ArrayList<Classes>();
 			String sql = "SELECT * FROM classes WHERE DateCreate >= CURRENT_DATE";
@@ -189,6 +224,60 @@ public class ClassesDAO {
 		    }
 
 		    return listClasses;
+		}
+		
+		
+		//Hàm xoá lớp theo ID(Xoá nhưng đăng ký trước khi xoá lớp)
+		public boolean deleteClassWithRegistrations(int classID) {
+		    Connection conn = null;
+		    PreparedStatement pstDeleteRegistrations = null;
+		    PreparedStatement pstDeleteClass = null;
+		    boolean isDeleted = false;
+
+		    try {
+		        conn = connectDatabase.getConnectMySQL();
+
+		        conn.setAutoCommit(false);
+
+		        // Xóa các đăng ký liên quan trong bảng Registrations
+		        String deleteRegistrationsSql = "DELETE FROM Registrations WHERE ClassID = ?";
+		        pstDeleteRegistrations = conn.prepareStatement(deleteRegistrationsSql);
+		        pstDeleteRegistrations.setInt(1, classID);
+		        pstDeleteRegistrations.executeUpdate();
+
+		        // Xóa lớp trong bảng Classes
+		        String deleteClassSql = "DELETE FROM Classes WHERE ClassID = ?";
+		        pstDeleteClass = conn.prepareStatement(deleteClassSql);
+		        pstDeleteClass.setInt(1, classID);
+		        int rowsAffected = pstDeleteClass.executeUpdate();
+
+		        if (rowsAffected > 0) {
+		            isDeleted = true;
+		        }
+
+		        // Commit transaction
+		        conn.commit();
+
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		        try {
+		            if (conn != null) {
+		                conn.rollback(); // Hoàn tác nếu có lỗi
+		            }
+		        } catch (SQLException rollbackEx) {
+		            rollbackEx.printStackTrace();
+		        }
+		    } finally {
+		        try {
+		            if (pstDeleteRegistrations != null) pstDeleteRegistrations.close();
+		            if (pstDeleteClass != null) pstDeleteClass.close();
+		            if (conn != null) conn.close();
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+
+		    return isDeleted;
 		}
 
 }
