@@ -21,30 +21,10 @@
 	    <img src="img/Logo_Gym.png" alt="Logo" style="height:100px;width:150%;">
 	  </div>
 
-	  <!-- Navigation -->
-	  <nav>
-	    <ul class="nav">
-	      <li class="nav-item"><a href="#" class="nav-link">Trang chủ</a></li>
-	      <li class="nav-item dropdown">
-		      <a href="#" class="nav-link dropdown-toggle" id="servicesMenu" data-bs-toggle="dropdown">Dịch vụ</a>
-		      <ul class="dropdown-menu" aria-labelledby="servicesMenu">
-		        <li><a class="dropdown-item" href="#">Dịch vụ 1</a></li>
-		        <li><a class="dropdown-item" href="#">Dịch vụ 2</a></li>
-		        <li><a class="dropdown-item" href="#">Dịch vụ 3</a></li>
-		      </ul>
-	      </li>
-		  <li class="nav-item dropdown">
-		      <a href="#" class="nav-link dropdown-toggle" id="servicesMenu" data-bs-toggle="dropdown">Gói dịch vụ</a>
-		      <ul class="dropdown-menu" aria-labelledby="servicesMenu">
-		        <li><a class="dropdown-item" href="#">Gói tập</a></li>
-		        <li><a class="dropdown-item" href="#">Gói hội viên</a></li>
-		      </ul>
-	      </li>
-	      <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
-	    </ul>
-	  </nav>
+	 
 	
 	  <!-- Nút Đăng ký -->
+	  
 	  <button class="btn btn-register" onclick="window.location.href='<%=request.getContextPath()%>/register.jsp'">Đăng ký</button>
 	</header>
 

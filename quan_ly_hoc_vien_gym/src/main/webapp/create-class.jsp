@@ -1,3 +1,8 @@
+<%@page import="model.bean.PT"%>
+<%@page import="model.dao.PTDAO"%>
+<%@page import="model.bean.Room"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.dao.RoomDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,22 +19,42 @@
 </head>
 <body>
 	<div class="background " id="bgr"></div>
+	<%
+		RoomDAO roomDAO = new RoomDAO();
+		ArrayList<Room> listRoom = roomDAO.getItems();
+		PTDAO ptDAO = new PTDAO();
+		ArrayList<PT> listPT = ptDAO.getItems();
+	%>
     <div class="container mt-5">
         <h1 class="text-center ">TẠO LỊCH TẬP</h1>
         <form action="<%=request.getContextPath()%>/tao-lich" method="post" class="mt-4">
             <div class="mb-3">
                 <label for="roomID" class="form-label">Phòng:</label>
                 <select name="roomID" id="roomID" class="form-select" required>
-                    <option value="1">Phòng 1</option>
-                    <option value="2">Phòng 2</option>
+                    <%
+                    	if(listRoom != null) {
+                    		for(Room objRoom : listRoom) {
+                    %>
+                    			<option value="<%=objRoom.getRoomId()%>"><%=objRoom.getRoomName()%></option>
+                    <%
+                    		}
+                    	}
+                    %>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label for="ptID" class="form-label">Huấn luyện viên:</label>
                 <select name="ptID" id="ptID" class="form-select" required>
-                    <option value="1">PT 1</option>
-                    <option value="2">PT 2</option>
+                    <%
+                    	if(listPT != null) {
+                    		for(PT objPT : listPT) {
+                    %>
+                    			<option value="<%=objPT.getPtId()%>"><%=objPT.getFullName()%></option>
+                    <%
+                    		}
+                    	}
+                    %>
                 </select>
             </div>
 

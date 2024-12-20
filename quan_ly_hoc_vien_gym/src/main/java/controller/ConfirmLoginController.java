@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.bean.Hash;
 import model.bean.User;
 import model.dao.UserDAO;
@@ -39,25 +40,44 @@ public class ConfirmLoginController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 	    request.setCharacterEncoding("UTF-8");
 	    
+	    String url = "";
 	    UserDAO userDAO = new UserDAO();
 	    Hash hash = new Hash();
 	    StringBuilder sb = new StringBuilder();
-	    
+	    String email = (String)request.getParameter("email");
+	    String pass = (String)request.getParameter("password");
+	    HttpSession session = request.getSession();
 	    ArrayList<User> listUser = userDAO.getItems();
-	    String phone = "0705995857";
-	    String passWord = "123123";
 	    
-	    sb.append(hash.hashPassword(passWord));
-	    
+	    sb.append(hash.hashPassword(pass));
+	    int idLogin = 0;
+	    boolean checkLogin = false;
 	    String hashPass = sb.toString();
 	    for(User objUser : listUser) {
-	    	if(phone.equals(objUser.getPhone()) && hashPass.equals(objUser.getPassword())) {
-	    		System.out.print("Đăng nhập thành công");
-	    	}else {
-	    		System.out.print("Đăng nhập thất bại");
+	    	if(email.equals(objUser.getEmail()) && hashPass.equals(objUser.getPassword())) {
+	    		System.out.println("Đăng nhập thành công");
+	    		checkLogin = true;
+	    		idLogin = objUser.getUserID();
+	    		
 	    	}
 	    }
 	    
+	    // Phân quyền khi đăng nhập nhập tài khoản là Admin
+	    if(!checkLogin) {
+	    	System.out.println("Đăng nhập thât bại");
+	    	session.setAttribute("message", "Sai mật khẩu hoặc tài khoản");
+	    	url = "/login.jsp";
+	    }else {
+	    	if(userDAO.getItemByID(idLogin).getRole().equals("Admin")) {
+	    		url = "/Admin-Index";
+	    		session.setAttribute("message", "Chào mừng admin");
+	    	}else {
+	    		session.setAttribute("message", "Chào mừng " + userDAO.getItemByID(idLogin).getFullName());
+	    		url = "/user-index.jsp";
+	    	}
+	    }
+	    session.setAttribute("idLogin",idLogin );
+	    request.getRequestDispatcher(url).forward(request, response);
 	}
 
 }

@@ -5,7 +5,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.bean.EmailService;
 import model.bean.Hash;
+import model.bean.OTPService;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -40,21 +43,15 @@ public class ConfirmRegisterController extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 	    request.setCharacterEncoding("UTF-8");
 	    
-	    /**
+
 	    String userName = request.getParameter("username");
 	    String passWord = request.getParameter("password");
 	    String email = request.getParameter("email");
 	    String phone = request.getParameter("phone");
-	    */
-	    
-	    String fullName = "Trịnh Ngọc Hưng";
-	    String passWord = "321321";
-	    String email = "ngochung@gmail.com";
-	    String phone = "0901234567";
-	    
-	    UserDAO userDAO = new UserDAO();
+  
 	    Hash hash = new Hash();
 	    StringBuilder sb = new StringBuilder();
+	    EmailService emailService = new EmailService();
 
 
 	    // Thêm giá trị băm vào StringBuilder
@@ -64,14 +61,25 @@ public class ConfirmRegisterController extends HttpServlet {
 	    // Chuyển đổi sang String
 	    String hashPass = sb.toString();
 	    
-	    User objUser = new User(fullName,email,hashPass,phone);
-	    boolean confirmRegister = userDAO.addUser(objUser);
+	    User objUser = new User(userName, email, hashPass, phone);
 	    
-	    if(confirmRegister) {
-	    	request.getRequestDispatcher("/login.jsp").forward(request, response);
-	    	System.out.println("Đăng ký thành công");
-	    }
+        try {
+            // Tạo mã OTP
+            String otp = OTPService.generateOTP();
 
+            // Gửi mã OTP qua email
+            System.out.println("Đang ở bước send mail");
+            emailService.sendEmail(email, otp);
+
+            // Lưu mã OTP vào session để so sánh sau này
+            HttpSession session = request.getSession();
+            session.setAttribute("otp", otp);
+            session.setAttribute("objUser", objUser);
+
+            request.getRequestDispatcher("/verify-otp.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
-
 }

@@ -1,3 +1,5 @@
+<%@page import="model.bean.PT"%>
+<%@page import="model.dao.PTDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,28 +16,41 @@
 <title>LH GYM </title>
 </head>
 <body>
+	<%
+		PTDAO ptDAO = new PTDAO();
+		int ptID = Integer.parseInt(request.getParameter("ptID"));
+		PT objPT = ptDAO.getItemByID(ptID);
+	%>
 	<div class="background " id="bgr"></div>
     <div class="container mt-5">
         <h2 class="text-center">Sửa thông tin PT</h2>
-        <form class="form-edit mt-4">
+        <form action="<%=request.getContextPath()%>/chinh-sua-pt?ptID=<%=objPT.getPtId() %>" method="POST"class="form-edit mt-4">
             <div class="mb-3">
                 <label for="fullname" class="form-label">Họ tên</label>
-                <input type="text" class="form-control" id="fullname" placeholder="Nhập họ tên">
+                <input name="fullname" type="text" class="form-control" id="fullname" value="<%= (objPT != null) ? objPT.getFullName() : "" %>">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">SĐT</label>
-                <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                <input  name="phone" type="text" class="form-control" id="phone" value="<%= (objPT != null) ? objPT.getPhone() : "" %>">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                <input name="email"  type="email" class="form-control" id="email" value="<%= (objPT != null) ? objPT.getEmail() : "" %>" readonly>
             </div>
             <div class="d-flex justify-content-between mt-4">
-                <button type="button" class="btn btn-danger">Xóa</button>
+                <button onclick="confirmDelete(<%=objPT.getPtId()%>)" type="button" class="btn btn-danger">Xóa</button>
                 <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+	    function confirmDelete(idPT) {
+	        // Hiển thị hộp thoại xác nhận
+	        if (confirm("Bạn có chắc chắn muốn xóa PT này?")) {
+	            window.location.href = "<%=request.getContextPath()%>/xoa-pt?idPT=" + idPT;
+	        }
+	    }
+	</script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

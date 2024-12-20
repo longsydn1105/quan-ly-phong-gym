@@ -14,5 +14,15 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/apache-tomcat-10.0.27"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/google-api-client-2.7.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/google-api-services-oauth2-v2-rev157-1.25.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/google-oauth-client-1.36.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/google-http-client-1.45.2.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/google-http-client-jackson2-1.42.3.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/gson-2.10.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.mail.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/jakarta.servlet-api-6.0.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

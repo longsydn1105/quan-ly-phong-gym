@@ -15,41 +15,32 @@
 <title>LH GYM </title>
 </head>
 <body>
+	<% 
+	 String message = (String) request.getAttribute("message");
+	if (message != null) {
+	        request.removeAttribute("message");
+	    
+	%>
+		<script type="text/javascript">
+        	alert("<%= message %>");
+   		</script>
+	<%} %>
 <!-- Thanh Logo -->
     <header class="d-flex justify-content-between align-items-center p-2 ">
 	  <!-- Logo -->
 	  <div class="logo">
 	    <img src="img/Logo_Gym.png" alt="Logo" style="height:100px;width:150%;">
 	  </div>
-
-	  <!-- Navigation -->
-	  <nav>
-	    <ul class="nav">
-	      <li class="nav-item"><a href="#" class="nav-link">Trang chủ</a></li>
-	      <li class="nav-item dropdown">
-		      <a href="#" class="nav-link dropdown-toggle" id="servicesMenu" data-bs-toggle="dropdown">Dịch vụ</a>
-		      <ul class="dropdown-menu" aria-labelledby="servicesMenu">
-		        <li><a class="dropdown-item" href="#">Dịch vụ 1</a></li>
-		        <li><a class="dropdown-item" href="#">Dịch vụ 2</a></li>
-		        <li><a class="dropdown-item" href="#">Dịch vụ 3</a></li>
-		      </ul>
-	      </li>
-	
-	      <li class="nav-item"><a href="#" class="nav-link">Liên hệ</a></li>
-	    </ul>
-	  </nav>
-	
-	  <!-- Nút Đăng nhập-->
-	  <button class="btn btn-login" onclick="window.location.href='<%=request.getContextPath()%>/login.jsp'">Đăng nhập</button>
+	 <button class="btn btn-register" onclick="window.location.href='<%=request.getContextPath()%>/login.jsp'">Đăng Nhập</button>
 	</header>
-
+	
 	<!-- Form đăng ký -->
 	<div class="container mt-5  registerForm">
         <h2 class="text-center" >Form Đăng Ký</h2>
         <form action="<%=request.getContextPath()%>/xac-nhan-dang-ky" method="POST" id="registerForm">
             <!-- Tên đăng nhập -->
             <div class="mb-3">
-                <label for="username" class="form-label">Tên đăng nhập</label>
+                <label for="username" class="form-label">Họ và Tên</label>
                 <input type="text" class="form-control" id="username" name="username" required>
             </div>
 
@@ -82,7 +73,14 @@
     		<div id="successMessage" class="mb-3" style="display: none; font-size: 20px; color: #48DE6F">
 			  <!-- Thông báo đăng ký thành công sẽ được hiển thị ở đây -->
 			</div>
-
+			
+			<%
+				if(request.getAttribute("error") != null) {
+			%> 
+				<h6><%=request.getAttribute("error") %></h6>
+			<% 		
+				}
+			%>
             <!-- Nút đăng ký -->
             <button type="submit" class="btn btn-primary">Đăng ký</button>
         </form>

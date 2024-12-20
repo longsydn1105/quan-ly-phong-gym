@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -39,20 +40,24 @@ public class UpdateUserController extends HttpServlet {
 	    request.setCharacterEncoding("UTF-8");
 	    
 	    UserDAO userDAO = new UserDAO();
-	    
-	    int ID = 2;
-	    String fullName = "Hưng Đẹp Trai";
-	    String email = "hungdz@gmail.com";
-	    
-	    User objUser = new User(ID, fullName, email);
+	    int idUser= Integer.parseInt(request.getParameter("idUser"));
+	    String fullName = (String)request.getParameter("fullname");
+	    String phone = (String)request.getParameter("phone");
+	    String email = (String)request.getParameter("email");
+	   
+	    User objUser = new User(idUser, fullName, email, phone);
 	    
 	    boolean check = userDAO.UpdateItem(objUser);
+	    HttpSession session = request.getSession();
 	    
 	    if(check) {
 	    	System.out.println("Update thành công");
+	    	session.setAttribute("message", "Cập nhật người dùng thành công!");
 	    }else {
 	    	System.out.println("Update thất bại");
+	    	session.setAttribute("message", "Cập nhật người dùng thất bại!");
 	    }
+	    request.getRequestDispatcher("/Admin-Index").forward(request, response);
 	}
 
 }

@@ -1,3 +1,5 @@
+<%@page import="model.bean.PT"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,41 +30,38 @@
                 </tr>
             </thead>
             <tbody>
+                <%
+            	if(request.getAttribute("listPT") != null) {
+            		ArrayList<PT> listPT = (ArrayList<PT>)request.getAttribute("listPT");
+            		int count = 0;
+            		for(PT objPT : listPT) {
+            			count++;
+            		
+            	%>
                 <tr>
-                    <td>1</td>
-                    <td>Nguyễn Văn A</td>
-                    <td>0123456789</td>
-                    <td>nguyenvana@gmail.com</td>
+                    <td><%=count %></td>
+                    <td><%=objPT.getFullName() %></td>
+                    <td><%=objPT.getPhone() %></td>
+                    <td><%=objPT.getEmail() %></td>
                     <td>
-                        <button class="btn btn-primary btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
+                        <button onclick="window.location.href='<%=request.getContextPath()%>/PT-update.jsp?ptID=<%=objPT.getPtId()%>'" class="btn btn-primary btn-sm">SỬA</button>
+                        <button onclick="confirmDelete(<%=objPT.getPtId()%>)" class="btn btn-danger btn-sm">XÓA</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Trần Thị B</td>
-                    <td>0987654321</td>
-                    <td>tranthib@gmail.com</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lê Văn C</td>
-                    <td>0912345678</td>
-                    <td>levanc@gmail.com</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Sửa</button>
-                        <button class="btn btn-danger btn-sm">Xóa</button>
-                    </td>
-                </tr>
+         	<%}} %>
             </tbody>
         </table>
         <div class="text-center mt-4">
-            <button class="btn btn-success">Thêm</button>
+            <button  onclick="window.location.href='<%=request.getContextPath()%>/PT-add.jsp'" class="btn btn-success">Thêm PT</button>
         </div>
     </div>
+    <script type="text/javascript">
+	    function confirmDelete(idPT) {
+	        // Hiển thị hộp thoại xác nhận
+	        if (confirm("Bạn có chắc chắn muốn xóa PT này?")) {
+	            window.location.href = "<%=request.getContextPath()%>/xoa-pt?idPT=" + idPT;
+	        }
+	    }
+	</script>
 </body>
 </html>

@@ -17,18 +17,18 @@
 	<div class="background " id="bgr"></div>
     <div class="container mt-5">
         <h2 class="text-center"> Thêm PT</h2>
-        <form class="form-edit mt-4">
+        <form action="<%=request.getContextPath()%>/them-PT" method="POST" class="form-edit mt-4">
             <div class="mb-3">
                 <label for="fullname" class="form-label">Họ tên</label>
-                <input type="text" class="form-control" id="fullname" placeholder="Nhập họ tên">
+                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="Nhập họ tên">
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">SĐT</label>
-                <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                <input name="phone" type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                <input name="email" type="email" class="form-control" id="email" placeholder="Nhập email">
             </div>
             <div class="d-flex justify-content-between mt-4">
                 <button type="submit" class="btn btn-primary">Thêm</button>

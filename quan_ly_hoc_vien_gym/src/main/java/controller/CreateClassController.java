@@ -69,6 +69,7 @@ public class CreateClassController extends HttpServlet {
 	    
 	    boolean confirmCreateClass = classDAO.addItem(objClass);
 	    System.out.println("Giá trị của của confirm: " + confirmCreateClass);
+	    
 	    if(confirmCreateClass) {
 	    	System.out.println("Tạo lịch thành công");
 	    	request.setAttribute("success", "Tạo lịch thành công");

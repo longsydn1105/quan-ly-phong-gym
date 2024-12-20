@@ -14,8 +14,19 @@ public class PT {
 
     public PT() {}
 
+    
+    
+    public PT(int ptId, String fullName, String email, String phone) {
+		super();
+		this.ptId = ptId;
+		this.fullName = fullName;
+		this.email = email;
+		this.phone = phone;
+	}
 
-    public PT(int ptId, String fullName, String email, String phone, String createdAt) {
+
+
+	public PT(int ptId, String fullName, String email, String phone, String createdAt) {
         this.ptId = ptId;
         this.fullName = fullName;
         this.email = email;

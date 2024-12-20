@@ -125,7 +125,7 @@ public class ClassesDAO {
 	
 	// Xoá đối tượng theo ID
 	public boolean DeleteClassByID (int classID) {
-		String sql = "DELETE classes WHERE ClassID = ?";
+		String sql = "DELETE FROM classes WHERE ClassID = ?";
 		try {
 			conn = connectDatabase.getConnectMySQL();
 			pst = conn.prepareStatement(sql);
@@ -279,5 +279,5 @@ public class ClassesDAO {
 
 		    return isDeleted;
 		}
-
+		
 }

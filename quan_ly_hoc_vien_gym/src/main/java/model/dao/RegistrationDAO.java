@@ -98,15 +98,16 @@ public class RegistrationDAO {
 		 return false;
 	}
 	
-	// Xoá đăng ký theo ID Lớp
-	public boolean deleteRegistrationByClassID(int classID) {
-	    String sql = "DELETE FROM Registrations WHERE ClassID = ?";
+	// Xoá đăng ký theo ID Lớp và ID người dùng
+	public boolean deleteRegistrationByClassID(Registration objRegis) {
+	    String sql = "DELETE FROM Registrations WHERE ClassID = ? AND UserID = ?";
 
 	    try {
 	        conn = connectDatabase.getConnectMySQL();
 
 	        pst = conn.prepareStatement(sql);
-	        pst.setInt(1, classID);
+	        pst.setInt(1, objRegis.getClassId());
+	        pst.setInt(2, objRegis.getUserId());
 
 	        int rowsAffected = pst.executeUpdate();
 	        return rowsAffected > 0; 

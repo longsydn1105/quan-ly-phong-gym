@@ -1,3 +1,5 @@
+<%@page import="model.bean.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,52 +30,42 @@
                 </tr>
             </thead>
             <tbody>
+            <%
+            	if(request.getAttribute("listUser") != null) {
+            		ArrayList<User> listUser = (ArrayList<User>)request.getAttribute("listUser");
+            		int count = 0;
+            		for(User objUser : listUser) {
+            			count++;
+            		
+            %>
                 <tr>
-                    <td>1</td>
-                    <td>Nguyễn Văn A</td>
-                    <td>0123456789</td>
-                    <td>nguyenvana@gmail.com</td>
+                    <td><%=count %></td>
+                    <td><%=objUser.getFullName() %></td>
+                    <td><%=objUser.getPhone() %></td>
+                    <td><%=objUser.getEmail() %></td>
                     <td>
-                        <button class="btn btn-primary btn-sm">SỬA</button>
-                        <button class="btn btn-danger btn-sm">XÓA</button>
+                        <button onclick="window.location.href='<%=request.getContextPath()%>/user-update.jsp?idUser=<%=objUser.getUserID()%>'" class="btn btn-primary btn-sm">SỬA</button>
+                        <button onclick="confirmDelete(<%=objUser.getUserID()%>)" class="btn btn-danger btn-sm">XÓA</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Trần Thị B</td>
-                    <td>0987654321</td>
-                    <td>tranthib@gmail.com</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">SỬA</button>
-                        <button class="btn btn-danger btn-sm">XÓA</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Phạm Văn C</td>
-                    <td>0345678923</td>
-                    <td>phamvanc@gmail.com</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">SỬA</button>
-                        <button class="btn btn-danger btn-sm">XÓA</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Phạm Văn C</td>
-                    <td>0345678923</td>
-                    <td>phamvanc@gmail.com</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">SỬA</button>
-                        <button class="btn btn-danger btn-sm">XÓA</button>
-                    </td>
-                </tr>
+         	<%}} %>
+         	
             </tbody>
         </table>
         <div class="text-center mt-4">
-            <button class="btn btn-success">Thêm</button>
+            <button onclick="window.location.href='<%=request.getContextPath()%>/register.jsp'" class="btn btn-success">Thêm Người Dùng</button>
         </div>
     </div>
+    
+    <script type="text/javascript">
+	    function confirmDelete(idUser) {
+	        // Hiển thị hộp thoại xác nhận
+	        if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+	            // Nếu người dùng xác nhận, chuyển hướng tới trang xóa với idUser
+	            window.location.href = "<%=request.getContextPath()%>/xoa-nguoi-dung?idUser=" + idUser;
+	        }
+	    }
+	</script>
 </body>
 
 </html>

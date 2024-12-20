@@ -56,7 +56,12 @@ public class PTDAO {
 		}
 		// Thêm đối tượng 
 		public boolean addPT(PT newPT) {
-		    
+		    if(isEmailRegistered(newPT.getEmail())) {
+		    	System.out.println("Email đã tồn tại");
+		    	return false;
+		    }else {
+		    	System.out.println("Email chưa tồn tại");
+		    }
 		    String sql = "INSERT INTO pt ( FullName, Email, Phone) VALUES (?, ?, ?)";
 
 		    try {
@@ -87,7 +92,7 @@ public class PTDAO {
 		//Lấy đối tượng theo ID 
 		public PT getItemByID(int ID) {
 			PT pt = null;
-			String sql = "SELECT * FROM users WHERE PTID = ?";
+			String sql = "SELECT * FROM PT WHERE PTID = ?";
 			conn = connectDatabase.getConnectMySQL();
 			
 			try {
@@ -118,7 +123,8 @@ public class PTDAO {
 		}
 		// Xóa PT 
 		public boolean DeleteItem (int ptID) {
-			String sql = "DELETE Users WHERE PTID = ?";
+			
+			String sql = "DELETE From PT WHERE PTID = ?";
 			try {
 				conn = connectDatabase.getConnectMySQL();
 				pst = conn.prepareStatement(sql);
@@ -142,14 +148,14 @@ public class PTDAO {
 		}
 		// Chỉnh sửa thông tin PT
 		public boolean UpdateItem(PT objPT) {
-			String sql = "UPDATE PT SET FullName = ?, Email = ? WHERE PTID = ?";
+			String sql = "UPDATE PT SET FullName = ?, Phone = ? WHERE PTID = ?";
 			
 			try {
 				conn = connectDatabase.getConnectMySQL();
 				pst = conn.prepareStatement(sql);
 				
 				pst.setString(1, objPT.getFullName());
-				pst.setString(2,objPT.getEmail());
+				pst.setString(2,objPT.getPhone());
 				pst.setInt(3, objPT.getPtId());
 				
 				int rowsAffected = pst.executeUpdate();
@@ -166,6 +172,34 @@ public class PTDAO {
 		            e.printStackTrace();
 		        }
 		    }
+		}
+		
+		//Kiểm tra email đã đăng ký chưa
+		public boolean isEmailRegistered(String email) {
+			String sql = "SELECT COUNT(*) FROM pt WHERE Email = ?";
+			
+			try {
+				conn = connectDatabase.getConnectMySQL();
+				pst = conn.prepareStatement(sql);
+				pst.setString(1,email);
+				rs = pst.executeQuery();
+				
+				if(rs.next()) {
+					int count = rs.getInt(1); // Lấy kết quả từ COUNT(*)
+					return count > 0;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false; 
+			} finally {
+		        try {
+		            if (pst != null) pst.close(); 
+		            if (conn != null) conn.close();   
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        }
+		    }
+			return false;
 		}
 }
 

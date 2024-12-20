@@ -12,6 +12,8 @@ public class User {
 	private String phone;
 	
 	private String createAt;
+	
+	private String role;
 
 	public int getUserID() {
 		return userID;
@@ -60,6 +62,28 @@ public class User {
 	public void setCreateAt(String createAt) {
 		this.createAt = createAt;
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
+
+	public User(int userID, String fullName, String email, String password, String phone, String createAt,
+			String role) {
+		super();
+		this.userID = userID;
+		this.fullName = fullName;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.createAt = createAt;
+		this.role = role;
+	}
 
 	public User(int userID, String fullName, String email, String password, String phone, String createAt) {
 		super();
@@ -85,7 +109,23 @@ public class User {
 		this.fullName = fullName;
 		this.email = email;
 	}
-	
+
+	public User(int userID, String fullName, String email, String phone) {
+		super();
+		this.userID = userID;
+		this.fullName = fullName;
+		this.email = email;
+		this.phone = phone;
+	}
+
+	public User(int userID, String fullName, String email, String phone, String createAt) {
+		super();
+		this.userID = userID;
+		this.fullName = fullName;
+		this.email = email;
+		this.phone = phone;
+		this.createAt = createAt;
+	}
 	
 	
 }

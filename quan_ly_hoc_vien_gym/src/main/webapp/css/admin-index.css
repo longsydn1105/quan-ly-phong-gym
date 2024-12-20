@@ -16,6 +16,26 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #FF0033; /* Màu đỏ như ở hover trong sidebar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng nhẹ */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f; /* Đổi màu khi hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng khi hover */
+}
 .container {
 	position: relative;
 	z-index: 1;

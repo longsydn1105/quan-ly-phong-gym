@@ -1,15 +1,15 @@
 package model.bean;
 
 public class Room {
-    private int roomId;            // RoomID: Mã phòng
-    private String roomName;       // RoomName: Tên phòng
-    private int capacity;          // Capacity: Sức chứa phòng
-    private String createdAt;      // CreatedAt: Thời gian tạo (định dạng chuỗi)
+    private int roomId;            
+    private String roomName;      
+    private int capacity;          
+    private String createdAt;      
 
-    // Constructor mặc định
+    
     public Room() {}
 
-    // Constructor đầy đủ tham số
+    
     public Room(int roomId, String roomName, int capacity, String createdAt) {
         this.roomId = roomId;
         this.roomName = roomName;
@@ -56,7 +56,7 @@ public class Room {
         this.createdAt = createdAt;
     }
 
-    // Phương thức hiển thị thông tin Room
+    
     public void displayInfo() {
         System.out.println("Room ID: " + roomId);
         System.out.println("Room Name: " + roomName);

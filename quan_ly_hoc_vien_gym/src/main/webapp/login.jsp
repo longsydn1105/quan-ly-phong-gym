@@ -11,9 +11,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <!-- Tích hợp icon -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<!-- Thư viện google Sign-in -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <title>LH GYM </title>
 </head>
 <body>
+	<% 
+	String message = (String) session.getAttribute("message");
+
+	    
+	    if (message != null) {
+	        session.removeAttribute("message");
+	    
+	%>
+		<script type="text/javascript">
+        	alert("<%= message %>");
+   		</script>
+	<%} %>
 <!-- Thanh Logo -->
     <header class="d-flex justify-content-between align-items-center p-2 ">
 	  <!-- Logo -->
@@ -29,8 +43,8 @@
         <form action="<%=request.getContextPath()%>/xac-nhan-dang-nhap" method="POST" id="loginForm">
             <!-- Tên đăng nhập -->
             <div class="mb-3">
-                <label for="username" class="form-label">Tên đăng nhập</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="email" class="form-label">Email đăng nhập</label>
+                <input type="text" class="form-control" id="email" name="email" required>
             </div>
 
             <!-- Mật khẩu -->

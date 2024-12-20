@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.dao.UserDAO;
 
 import java.io.IOException;
@@ -39,16 +40,19 @@ public class DeleteUserController extends HttpServlet {
 	    
 	    UserDAO userDAO = new UserDAO();
 	    
-	    int ID = 2;
+	    int idUser = Integer.parseInt(request.getParameter("idUser"));
 	    
-	    boolean check = userDAO.DeleteItem(ID);
-	    
+	    boolean check = userDAO.DeleteItem(idUser);
+	    HttpSession session = request.getSession();
 	    if(check) {
 	    	System.out.println("Xóa thành công");
+	    	session.setAttribute("message", "Xoá người dùng thành công");
 	    }else {
 	    	System.out.println("Xóa thất bại");
+	    	session.setAttribute("message", "Xoá người dùng thất bại");
 	    }
 	    
+	    request.getRequestDispatcher("/Admin-Index").forward(request, response);
 	}
 
 }
