@@ -22,14 +22,14 @@
 	<div class="background"></div>
     <div class="container mt-5 form-group">
         <h2 class="text-center mb-4">THÔNG TIN NGƯỜI DÙNG</h2>
-        <form>
+        <form action="<%=request.getContextPath()%>/nguoi-dung-chinh-sua?id=<%=objUser != null ? objUser.getUserID() : "" %>" method="POST">
             <div class="mb-3">
                 <label for="fullname" class="form-label">Họ và Tên</label>
-                <input type="text" id="fullname" name="fullname" class="form-input" value="<%=objUser != null ? objUser.getFullName() : " " %>"  readonly>
+                <input type="text" id="fullname" name="fullname" class="form-input" value="<%=objUser != null ? objUser.getFullName() : " " %>"  >
             </div>
             <div class="mb-3">
                 <label for="phone" class="form-label">Số Điện Thoại</label>
-                <input type="tel" id="phone" name="phone" class="form-input" value="<%=objUser != null ? objUser.getPhone() : " " %>"  readonly>
+                <input type="tel" id="phone" name="phone" class="form-input" value="<%=objUser != null ? objUser.getPhone() : " " %>"  >
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -40,14 +40,7 @@
                 <input type="text" id="registerDate" name="registerDate" class="form-input" value="<%=objUser != null ? objUser.getCreateAt() : " " %>"  readonly>
             </div>
             <div class="text-center mt-4">
-                <a href="edit-user.jsp?id=<%=objUser != null ? objUser.getUserID() : "" %>" class="btn btn-primary">
-                    <i class="fas fa-edit"></i> Sửa Thông Tin
-                </a>
-            </div>
-            <div class="text-center mt-4">
-                <a href="delete-user.jsp?id=<%=objUser !=null ? objUser.getUserID() : ""%>" class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i> Xóa Tài Khoản
-                </a>
+                <input type="submit" name="submit" value="Sửa thông tin">
             </div>
         </form>
     </div>

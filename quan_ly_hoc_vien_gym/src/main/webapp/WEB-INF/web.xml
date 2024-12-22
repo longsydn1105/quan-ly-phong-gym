@@ -6,6 +6,10 @@
     <servlet-name>ConfirmRegisterController</servlet-name>
     <servlet-class>controller.ConfirmRegisterController</servlet-class>
   </servlet>
+  <session-config>
+    <session-timeout>30</session-timeout>
+</session-config>
+  
   <servlet-mapping>
     <servlet-name>ConfirmRegisterController</servlet-name>
     <url-pattern>/xac-nhan-dang-ky</url-pattern>
@@ -287,7 +291,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateUserServlet</servlet-name>
-    <url-pattern>/UpdateUserServlet</url-pattern>
+    <url-pattern>/nguoi-dung-chinh-sua</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

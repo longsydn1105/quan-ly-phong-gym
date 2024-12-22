@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -28,8 +29,7 @@ public class UpdateUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -37,22 +37,28 @@ public class UpdateUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int userId = Integer.parseInt(request.getSession().getAttribute("idLogin").toString());
+		
+		int userId = Integer.parseInt(request.getParameter("id").toString());
         String fullName = request.getParameter("fullname");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-
+        
+        System.out.println("Tên người dùng: " + fullName);
         // Cập nhật thông tin người dùng
         UserDAO userDAO = new UserDAO();
         User updatedUser = new User(userId, fullName, email, phone);
         
         boolean isUpdated = userDAO.UpdateItem(updatedUser);
-
+        HttpSession session = request.getSession();
         if (isUpdated) {
-            response.sendRedirect("infor-user.jsp");
+        	System.out.println("Cập nhập thông tin người dùng thành công");
+        	session.setAttribute("message", "Cập nhật thông tin thành công!");
+            request.getRequestDispatcher("/user-index.jsp").forward(request, response);
+
         } else {
-            request.setAttribute("message", "Cập nhật thông tin thất bại!");
-            request.getRequestDispatcher("edit-user.jsp").forward(request, response);
+        	System.out.println("Cập nhập thông tin người dùng thất bại");
+            session.setAttribute("message", "Cập nhật thông tin thất bại!");
+            request.getRequestDispatcher("/user-index.jsp").forward(request, response);
         }
 //        // Điều hướng trở lại trang thông tin người dùng
 //        request.setAttribute("objUser", updatedUser);

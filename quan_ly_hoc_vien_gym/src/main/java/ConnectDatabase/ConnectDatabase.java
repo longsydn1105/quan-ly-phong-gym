@@ -19,7 +19,7 @@ public class ConnectDatabase {
 		this.db = "ql_phong_gym";
 		this.url = "jdbc:mysql://localhost:3306/"+db+"?useUnicode=true&characterEncoding=UTF-8";
 		this.user = "root";
-		this.pass= "TNH_hung2402";
+		this.pass= "";
 	}
 	
 	public Connection getConnectMySQL() {
