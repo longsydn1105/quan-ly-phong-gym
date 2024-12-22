@@ -76,7 +76,7 @@ public class ConfirmLoginController extends HttpServlet {
 	    		url = "/user-index.jsp";
 	    	}
 	    }
-	    session.setAttribute("idLogin",idLogin );
+	    session.setAttribute("idLogin",idLogin);
 	    request.getRequestDispatcher(url).forward(request, response);
 	}
 

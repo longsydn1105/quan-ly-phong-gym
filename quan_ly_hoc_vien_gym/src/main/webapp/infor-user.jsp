@@ -39,6 +39,16 @@
                 <label for="registerDate" class="form-label">Ngày Đăng Ký</label>
                 <input type="text" id="registerDate" name="registerDate" class="form-input" value="<%=objUser != null ? objUser.getCreateAt() : " " %>"  readonly>
             </div>
+            <div class="text-center mt-4">
+                <a href="edit-user.jsp?id=<%=objUser != null ? objUser.getUserID() : "" %>" class="btn btn-primary">
+                    <i class="fas fa-edit"></i> Sửa Thông Tin
+                </a>
+            </div>
+            <div class="text-center mt-4">
+                <a href="delete-user.jsp?id=<%=objUser !=null ? objUser.getUserID() : ""%>" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Xóa Tài Khoản
+                </a>
+            </div>
         </form>
     </div>
     <!-- Link Bootstrap Bundle JS -->
